@@ -15,6 +15,19 @@ const shuffleOrder = () => {
     clickedOrder = [];
 
     for(let i in order) {
-        let elementcolor
+        let elementcolor = createColorElement(order[i]);
+        lightColor(elementcolor, Number(i) + 1);
     }
 }
+
+const lightColor = (element, number) => {
+    number *= 500;
+    setTimeout(() => {
+        element.classList.add('selected');
+    }, number - 250);
+    setTimeout(() => {
+        element.classList.remove('selected');
+    })
+}
+
+const createColorElement = () => {}
