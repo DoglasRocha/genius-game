@@ -9,6 +9,7 @@ const red = document.querySelector('.red');
 const yellow = document.querySelector('.yellow');
 const green = document.querySelector('.green');
 
+// create random color order
 const shuffleOrder = () => {
     let colorOrder = Math.floor(Math.random() * 4);
     order.push(colorOrder);
@@ -20,6 +21,7 @@ const shuffleOrder = () => {
     }
 }
 
+// lights the next color
 const lightColor = (element, number) => {
     number *= 500;
     setTimeout(() => {
@@ -28,6 +30,32 @@ const lightColor = (element, number) => {
     setTimeout(() => {
         element.classList.remove('selected');
     })
+}
+
+// checks if the clicked buttons are the same of the generated game order
+const checkOrder = () => {
+    for(let i in clickedOrder) {
+        if (clickedOrder[i] != order[i]) {
+            lose();
+            break;
+        }
+    }
+    if (clickedOrder.length == order.lenght) {
+        alert(`Pontuação: ${score} \nVocê acertou! Iniciando próximo nível`);
+        nextLevel();
+    }
+}
+
+// function for user click
+const click = (color) => {
+    clickedOrder.push(color);
+    createColorElement(color).classList.add('selected');
+
+    setTimeout(() => {
+        createColorElement(color).classList.remove('selected');
+    })
+
+    checkOrder()
 }
 
 const createColorElement = () => {}
